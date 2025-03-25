@@ -7,49 +7,70 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Envoi POST avec :', formData);
     try {
       const response = await axios.post('http://localhost:8000/api/contact', formData);
-      console.log(response.data); // Vérifie la réponse
+      console.log('Réponse API :', response.data);
       alert('Message envoyé !');
       setFormData({ name: '', email: '', message: '' });
     } catch (_error) {
-      console.log(_error); // Vérifie l’erreur
+      console.error('Erreur API :', _error.response ? _error.response.data : _error.message);
       alert('Erreur lors de l’envoi.');
     }
   };
 
   return (
-    <>
+    <div className="container">
       <header>
-        <h1>Salut, je suis [Ton Nom]</h1>
-        <p>Développeur de plateformes web</p>
+        <h1>Alexis [Ton Nom]</h1>
+        <nav>
+          <a href="#projects">Projets</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </header>
-      <section id="projects">
-        <h2>Mes Projets</h2>
-        <div className="project">
-          <h3>Projet 1</h3>
-          <p>Une plateforme web avec [technos]. <a href="#">Voir le projet</a></p>
+
+      <section id="intro">
+        <div className="intro-content">
+          <h2>Développeur de plateformes web</h2>
+          <p>Créateur de solutions modernes et performantes avec React, Laravel et plus.</p>
         </div>
       </section>
+
+      <section id="projects">
+        <h2>Mes Projets</h2>
+        <div className="projects-grid">
+          <div className="project-card">
+            <h3>Plateforme E-commerce</h3>
+            <p>Une boutique en ligne avec React et Laravel, optimisée pour laa performance.</p>
+            <a href="https://github.com/Toutvendre" target="_blank" rel="noopener noreferrer">Voir sur GitHub</a>
+          </div>
+          <div className="project-card">
+            <h3>Dashboard Admin</h3>
+            <p>Un tableau de bord interactif pour gérer des données, codé avec Vue et PHP.</p>
+            <a href="https://github.com/Toutvendre" target="_blank" rel="noopener noreferrer">Voir sur GitHub</a>
+          </div>
+        </div>
+      </section>
+
       <section id="contact">
-        <h2>Contact</h2>
-        <form onSubmit={handleSubmit}>
+        <h2>Me Contacter</h2>
+        <form onSubmit={handleSubmit} className="contact-form">
           <input
             type="text"
-            placeholder="Nom"
+            placeholder="Votre nom"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
           />
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Votre email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             required
           />
           <textarea
-            placeholder="Message"
+            placeholder="Votre message"
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             required
@@ -57,7 +78,11 @@ function App() {
           <button type="submit">Envoyer</button>
         </form>
       </section>
-    </>
+
+      <footer>
+        <p>© 2025 Alexis [Ton Nom]. Tous droits réservés.</p>
+      </footer>
+    </div>
   );
 }
 
