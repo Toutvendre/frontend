@@ -1,87 +1,63 @@
-import { useState } from 'react';
-import axios from 'axios';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './ThemeProvider.jsx';
+import { ThemeContext } from './ThemeContext.jsx';
+import Services from './Services.jsx';
+import Home from './Home.jsx';
+import Skills from './Skills.jsx';
+import Contact from './Contact.jsx';
+import { FaSun, FaMoon, FaPalette } from 'react-icons/fa';
 
 function App() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  return (
+    <ThemeProvider>
+      <Router>
+        <ThemeControls />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
+  );
+}
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Envoi POST avec :', formData);
-    try {
-      const response = await axios.post('http://localhost:8000/api/contact', formData);
-      console.log('Réponse API :', response.data);
-      alert('Message envoyé !');
-      setFormData({ name: '', email: '', message: '' });
-    } catch (_error) {
-      console.error('Erreur API :', _error.response ? _error.response.data : _error.message);
-      alert('Erreur lors de l’envoi.');
-    }
-  };
+function ThemeControls() {
+  const { theme, setTheme, setPrimaryColor } = React.useContext(ThemeContext);
+  const colors = [
+    { name: 'Turquoise', value: '#167D7F' },
+    { name: 'Corail', value: '#FF6F61' },
+    { name: 'Violet', value: '#6B5B95' },
+    { name: 'Vert', value: '#2ECC71' },
+  ];
 
   return (
-    <div className="container">
-      <header>
-        <h1>Alexis [Ton Nom]</h1>
-        <nav>
-          <a href="#projects">Projets</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
-
-      <section id="intro">
-        <div className="intro-content">
-          <h2>Développeur de plateformes web</h2>
-          <p>Créateur de solutions modernes et performantes avec React, Laravel et plus.</p>
+    <div className="fixed top-4 right-4 z-50 flex space-x-4 items-center">
+      <button
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        className="p-2 bg-[var(--primary-color)] text-white rounded-full hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center"
+        title={theme === 'dark' ? 'Passer au mode clair' : 'Passer au mode sombre'}
+      >
+        {theme === 'dark' ? <FaSun className="text-xl" /> : <FaMoon className="text-xl" />}
+      </button>
+      <div className="relative group">
+        <button className="p-2 bg-[var(--primary-color)] text-white rounded-full hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center">
+          <FaPalette className="text-xl" />
+        </button>
+        <div className="absolute top-12 right-0 flex space-x-2 bg-[var(--background-color)] p-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {colors.map((color) => (
+            <button
+              key={color.name}
+              onClick={() => setPrimaryColor(color.value)}
+              className="w-6 h-6 rounded-full border-2 border-[var(--text-color)]"
+              style={{ backgroundColor: color.value }}
+              title={color.name}
+            />
+          ))}
         </div>
-      </section>
-
-      <section id="projects">
-        <h2>Mes Projets</h2>
-        <div className="projects-grid">
-          <div className="project-card">
-            <h3>Plateforme E-commerce</h3>
-            <p>Une boutique en ligne avec React et Laravel, optimisée pour laa performance.</p>
-            <a href="https://github.com/Toutvendre" target="_blank" rel="noopener noreferrer">Voir sur GitHub</a>
-          </div>
-          <div className="project-card">
-            <h3>Dashboard Admin</h3>
-            <p>Un tableau de bord interactif pour gérer des données, codé avec Vue et PHP.</p>
-            <a href="https://github.com/Toutvendre" target="_blank" rel="noopener noreferrer">Voir sur GitHub</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <h2>Me Contacter</h2>
-        <form onSubmit={handleSubmit} className="contact-form">
-          <input
-            type="text"
-            placeholder="Votre nom"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Votre email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            required
-          />
-          <textarea
-            placeholder="Votre message"
-            value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            required
-          />
-          <button type="submit">Envoyer</button>
-        </form>
-      </section>
-
-      <footer>
-        <p>© 2025 Alexis [Ton Nom]. Tous droits réservés.</p>
-      </footer>
+      </div>
     </div>
   );
 }
