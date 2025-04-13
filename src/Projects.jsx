@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useContext } from 'react';
 import { ThemeContext } from './ThemeContext.jsx';
 
 function Projects() {
-    const { primaryColor } = useContext(ThemeContext); // Retiré 'theme' car non utilisé
+    const { primaryColor } = useContext(ThemeContext);
 
     const project3Images = useMemo(() => [
         "/images/connect1.png",
@@ -19,6 +19,7 @@ function Projects() {
 
     const [currentImage, setCurrentImage] = useState(project3Images[0]);
     const [isVisible, setIsVisible] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // État pour le menu hamburger
 
     useEffect(() => {
         setIsVisible(true);
@@ -61,6 +62,11 @@ function Projects() {
         document.documentElement.style.setProperty('--primary-color', primaryColor);
     }, [primaryColor]);
 
+    // Fonction pour basculer l'état du menu
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
         <div
             className="w-full min-h-screen flex flex-col"
@@ -68,10 +74,21 @@ function Projects() {
         >
             {/* Header */}
             <header
-                className="w-full py-6 px-4 md:px-8 flex justify-center items-center"
+                className="w-full py-6 px-4 flex justify-between items-center md:justify-center md:px-8"
                 style={{ background: 'transparent' }}
             >
-                <nav className="flex space-x-8">
+                {/* Bouton hamburger (petits écrans) */}
+                <button
+                    className="md:hidden text-[var(--gray-text)] hover:text-[var(--primary-color)] transition-colors duration-300"
+                    onClick={toggleMenu}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+
+                {/* Menu principal (grands écrans, inchangé) */}
+                <nav className="hidden md:flex space-x-8">
                     {['/', '/about', '/projects', '/skills', '/services', '/contact'].map((path, index) => (
                         <Link
                             key={index}
@@ -85,16 +102,34 @@ function Projects() {
                 </nav>
             </header>
 
-            {/* Section projets */}
-            <section className="flex-1 px-4 md:px-8 py-16 flex flex-col items-center">
+            {/* Menu déroulant pour les petits écrans */}
+            {isMenuOpen && (
+                <div className="md:hidden absolute top-16 left-0 w-full bg-[var(--background-color)] shadow-lg z-50">
+                    <nav className="flex flex-col space-y-4 p-4">
+                        {['/', '/about', '/projects', '/skills', '/services', '/contact'].map((path, index) => (
+                            <Link
+                                key={index}
+                                to={path}
+                                className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300"
+                                style={{ color: 'var(--gray-text)' }}
+                            >
+                                {['Accueil', 'A propos', 'Portfolio', 'Compétences', 'Services', 'Contact'][index]}
+                            </Link>
+                        ))}
+                    </nav>
+                </div>
+            )}
+
+            {/* Section projets (inchangée pour grands écrans) */}
+            <section className="flex-1 px-4 sm:px-6 md:px-8 py-16 flex flex-col items-center">
                 <h1
-                    className={`text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                    className={`text-3xl sm:text-2xl md:text-5xl font-bold text-center mb-6 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                     style={{ color: 'var(--primary-color)' }}
                 >
                     Mes Projets
                 </h1>
                 <p
-                    className="text-sm sm:text-base md:text-lg leading-relaxed mb-12 text-center max-w-3xl"
+                    className="text-sm md:text-lg leading-relaxed mb-12 text-center max-w-3xl"
                     style={{ color: 'var(--gray-text)' }}
                 >
                     Découvrez mes réalisations en développement web et mobile, alliant performance, esthétique et modernité.
@@ -114,7 +149,7 @@ function Projects() {
                             />
                             <div className="p-6 md:p-8">
                                 <h2
-                                    className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3"
+                                    className="text-xl sm:text-lg md:text-3xl font-semibold mb-3"
                                     style={{ color: 'var(--primary-color)' }}
                                 >
                                     {project.title}
@@ -180,7 +215,7 @@ function Projects() {
                             )}
                             <div className="p-6">
                                 <h2
-                                    className="text-lg sm:text-xl md:text-2xl font-semibold mb-2"
+                                    className="text-lg sm:text-base md:text-2xl font-semibold mb-2"
                                     style={{ color: 'var(--primary-color)' }}
                                 >
                                     {project.title}
@@ -223,10 +258,10 @@ function Projects() {
 
             {/* Footer */}
             <footer
-                className="w-full py-6 px-4 md:px-8 text-center"
+                className="w-full py-6 px-4 sm:px-6 md:px-8 text-center"
                 style={{ background: 'transparent' }}
             >
-                <div className="flex justify-center space-x-6 mb-4">
+                <div className="flex justify-center space-x-6 sm:space-x-4 mb-4">
                     {[
                         { href: "https://www.linkedin.com/in/alexis-ki-099781358", icon: FaLinkedin },
                         { href: "https://github.com/Toutvendre", icon: FaGithub },
@@ -242,11 +277,11 @@ function Projects() {
                             style={{ color: 'var(--gray-text)' }}
                             aria-label={social.href.split('/')[2]}
                         >
-                            <social.icon className="text-xl md:text-2xl" />
+                            <social.icon className="text-xl sm:text-lg md:text-2xl" />
                         </a>
                     ))}
                 </div>
-                <p className="text-sm font-light tracking-wide" style={{ color: 'var(--gray-text)' }}>
+                <p className="text-sm sm:text-xs font-light tracking-wide" style={{ color: 'var(--gray-text)' }}>
                     © 2025 KI Brou Alexis. Tous droits réservés.
                 </p>
             </footer>
