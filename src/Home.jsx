@@ -12,13 +12,13 @@ function Home() {
     return (
         <div className="w-full h-screen flex flex-col" style={{ backgroundColor: 'var(--background-color)', color: 'var(--text-color)' }}>
             <header className="w-full py-6 px-4 flex justify-center items-center" style={{ background: 'linear-gradient(to bottom, rgba(var(--primary-color-rgb), 0.1), transparent)' }}>
-                <nav className="flex space-x-4 sm:space-x-6 md:space-x-8">
-                    <a href="#home" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 text-sm sm:text-base" style={{ color: 'var(--gray-text)' }}>Accueil</a>
-                    <a href="/services" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 text-sm sm:text-base" style={{ color: 'var(--gray-text)' }}>Services</a>
-                    <a href="/skills" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 text-sm sm:text-base" style={{ color: 'var(--gray-text)' }}>Compétences</a>
-                    <a href="#education" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 text-sm sm:text-base" style={{ color: 'var(--gray-text)' }}>Éducation</a>
-                    <a href="#experience" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 text-sm sm:text-base" style={{ color: 'var(--gray-text)' }}>Expérience</a>
-                    <Link to="/contact" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 text-sm sm:text-base" style={{ color: 'var(--gray-text)' }}>Contact</Link>
+                <nav className="flex space-x-8">
+                    <Link to="/" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Accueil</Link>
+                    <Link to="/about" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>A propos</Link>
+                    <Link to="/projects" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Portfolio</Link>
+                    <Link to="/skills" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Compétences</Link>
+                    <Link to="/services" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>services</Link>
+                    <Link to="/contact" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Contact</Link>
                 </nav>
             </header>
             <section id="home" className="flex flex-col md:flex-row items-center justify-between px-4 md:px-8 flex-1">
@@ -56,13 +56,13 @@ function Home() {
                         Web et Mobile passionné. Spécialisé en HTML, CSS, JavaScript, React et PHP, je conçois des sites performants et esthétiques, avec des interfaces intuitives. À jour sur les dernières technos, je livre des solutions modernes et de qualité.
                     </p>
                     <div className="flex space-x-4 md:space-x-6 mb-6 md:mb-8">
-                        <a href="https://linkedin.com/in/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
+                        <a href="https://www.linkedin.com/in/alexis-ki-099781358" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
                             <FaLinkedin className="text-xl md:text-2xl" />
                         </a>
                         <a href="https://github.com/Toutvendre" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
                             <FaGithub className="text-xl md:text-2xl" />
                         </a>
-                        <a href="https://twitter.com/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
+                        <a href="https://x.com/AlexisKI07" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
                             <FaTwitter className="text-xl md:text-2xl" />
                         </a>
                         <a href="https://instagram.com/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>

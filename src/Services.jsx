@@ -13,7 +13,7 @@ function Services() {
     const services = [
         { name: 'Développement Web Personnalisé', icon: <FaCode className="text-5xl text-[var(--primary-color)] drop-shadow-md" />, description: 'Je transforme vos idées en sites web modernes, rapides et adaptés à tous les écrans, en utilisant des technologies comme React, HTML5, et CSS3.' },
         { name: 'Conception d’Applications Mobiles', icon: <FaMobileAlt className="text-5xl text-[var(--primary-color)] drop-shadow-md" />, description: 'Création d’applications mobiles fluides et intuitives avec React Native, pour iOS et Android, adaptées à vos besoins spécifiques.' },
-        { name: 'Solutions Backend & API', icon: <FaServer className="text-5xl text-[var(--primary-color)] drop-shadow-md" />, description: 'Développement de backends robustes et d’APIs sécurisées avec PHP, Laravel, et bases de données comme MySQL ou MongoDB.' },
+        { name: 'Solutions Backend & API', icon: <FaServer className="text-5xl text-[var(--primary-color)] drop-shadow-md" />, description: 'Développement de backends robustes et d’APIs sécurisées avec PHP, Laravel, et bases de données comme MySQL, Postgres ou MongoDB.' },
     ];
 
     return (
@@ -22,10 +22,10 @@ function Services() {
             <header className="w-full py-6 px-4 flex justify-center items-center" style={{ background: 'linear-gradient(to bottom, rgba(var(--primary-color-rgb), 0.1), transparent)' }}>
                 <nav className="flex space-x-8">
                     <Link to="/" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Accueil</Link>
-                    <a href="#services" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Services</a>
-                    <a href="/skills" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Compétences</a>
-                    <a href="#education" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Éducation</a>
-                    <a href="#experience" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Expérience</a>
+                    <Link to="/about" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>A propos</Link>
+                    <Link to="/projects" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Portfolio</Link>
+                    <Link to="/skills" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Compétences</Link>
+                    <Link to="/services" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>services</Link>
                     <Link to="/contact" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Contact</Link>
                 </nav>
             </header>
@@ -53,13 +53,13 @@ function Services() {
             {/* Footer */}
             <footer className="w-full py-6 text-center" style={{ background: 'linear-gradient(to top, rgba(var(--primary-color-rgb), 0.1), transparent)', color: 'var(--text-color)' }}>
                 <div className="flex justify-center space-x-6 mb-4">
-                    <a href="https://linkedin.com/in/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
+                    <a href="https://www.linkedin.com/in/alexis-ki-099781358" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
                         <FaLinkedin className="text-2xl" />
                     </a>
                     <a href="https://github.com/Toutvendre" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
                         <FaGithub className="text-2xl" />
                     </a>
-                    <a href="https://twitter.com/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
+                    <a href="https://x.com/AlexisKI07" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
                         <FaTwitter className="text-2xl" />
                     </a>
                     <a href="https://instagram.com/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>

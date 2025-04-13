@@ -6,7 +6,10 @@ import Services from './Services.jsx';
 import Home from './Home.jsx';
 import Skills from './Skills.jsx';
 import Contact from './Contact.jsx';
+import Projects from './Projects.jsx';
+import About from './About.jsx';
 import { FaSun, FaMoon, FaPalette } from 'react-icons/fa';
+
 
 function App() {
   return (
@@ -17,7 +20,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/skills" element={<Skills />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </Router>
     </ThemeProvider>

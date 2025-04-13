@@ -4,7 +4,7 @@
 :root {
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 200;
   color: var(--text-color);
   /* Utilise la variable pour le texte */
   background-color: var(--background-color);
@@ -99,4 +99,32 @@ button {
 
 .animate-pulse {
   animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 20s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 20s linear infinite;
 }

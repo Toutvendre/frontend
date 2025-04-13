@@ -6,6 +6,7 @@ import { FaGithub, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';
 function Contact() {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [formStatus, setFormStatus] = useState(null);
+    const [isLoading, setIsLoading] = useState(false); // Nouvel état pour le chargement
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -14,23 +15,30 @@ function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setFormStatus(null);
-        console.log('Envoi POST avec :', formData);
-        try {
-            const response = await axios.post('http://localhost:8000/api/contact', formData, {
-                headers: { 'Content-Type': 'application/json' },
-            });
-            console.log('Réponse API :', response.data);
-            setFormStatus({ type: 'success', message: 'Message envoyé avec succès !' });
-            setFormData({ name: '', email: '', message: '' });
-        } catch (error) {
-            console.error('Erreur API détaillée :', {
-                message: error.message,
-                response: error.response ? error.response.data : null,
-                status: error.response ? error.response.status : null,
-            });
-            setFormStatus({ type: 'error', message: 'Erreur lors de l’envoi. Veuillez réessayer.' });
-        }
+        setFormStatus(null); // Réinitialiser le statut
+        setIsLoading(true);  // Activer le chargement
+
+        // Simuler un délai de 2 secondes avant de traiter la requête
+        setTimeout(async () => {
+            console.log('Envoi POST avec :', formData);
+            try {
+                const response = await axios.post(`${import.meta.env.VITE_API_URL}`, formData, {
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                console.log('Réponse API :', response.data);
+                setFormStatus({ type: 'success', message: 'Message envoyé avec succès !' });
+                setFormData({ name: '', email: '', message: '' });
+            } catch (error) {
+                console.error('Erreur API détaillée :', {
+                    message: error.message,
+                    response: error.response ? error.response.data : null,
+                    status: error.response ? error.response.status : null,
+                });
+                setFormStatus({ type: 'error', message: 'Erreur lors de l’envoi. Veuillez réessayer.' });
+            } finally {
+                setIsLoading(false); // Désactiver le chargement après la requête
+            }
+        }, 2000); // Délai de 2 secondes (2000ms)
     };
 
     return (
@@ -38,12 +46,12 @@ function Contact() {
             {/* Header */}
             <header className="w-full py-6 px-4 flex justify-center items-center" style={{ background: 'linear-gradient(to bottom, rgba(var(--primary-color-rgb), 0.1), transparent)' }}>
                 <nav className="flex space-x-8">
-                    <Link to="/" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-1" style={{ color: 'var(--gray-text)' }}>Accueil</Link>
-                    <a href="/services" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-1" style={{ color: 'var(--gray-text)' }}>Services</a>
-                    <a href="/skills" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-1" style={{ color: 'var(--gray-text)' }}>Compétences</a>
-                    <a href="#education" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-1" style={{ color: 'var(--gray-text)' }}>Éducation</a>
-                    <a href="#experience" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-1" style={{ color: 'var(--gray-text)' }}>Expérience</a>
-                    <Link to="/contact" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-1" style={{ color: 'var(--gray-text)' }}>Contact</Link>
+                    <Link to="/" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Accueil</Link>
+                    <Link to="/about" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>A propos</Link>
+                    <Link to="/projects" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Portfolio</Link>
+                    <Link to="/skills" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Compétences</Link>
+                    <Link to="/services" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>services</Link>
+                    <Link to="/contact" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2" style={{ color: 'var(--gray-text)' }}>Contact</Link>
                 </nav>
             </header>
 
@@ -59,6 +67,7 @@ function Contact() {
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             required
+                            disabled={isLoading} // Désactiver pendant le chargement
                             className="w-full p-3 mb-4 bg-transparent border rounded-lg focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:outline-none transition-all duration-300"
                             style={{ borderColor: 'var(--gray-text)', color: 'var(--text-color)', placeholder: 'var(--gray-text)' }}
                         />
@@ -68,6 +77,7 @@ function Contact() {
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             required
+                            disabled={isLoading}
                             className="w-full p-3 mb-4 bg-transparent border rounded-lg focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:outline-none transition-all duration-300"
                             style={{ borderColor: 'var(--gray-text)', color: 'var(--text-color)', placeholder: 'var(--gray-text)' }}
                         />
@@ -76,17 +86,19 @@ function Contact() {
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                             required
+                            disabled={isLoading}
                             className="w-full p-3 mb-4 bg-transparent border rounded-lg focus:border-[var(--primary-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:outline-none resize-y transition-all duration-300"
                             style={{ borderColor: 'var(--gray-text)', color: 'var(--text-color)', placeholder: 'var(--gray-text)' }}
                         />
                         <button
                             type="submit"
-                            className="w-full p-3 text-white rounded-lg hover:bg-[var(--primary-color)]/80 transition-all duration-300 transform hover:scale-105"
+                            disabled={isLoading} // Désactiver le bouton pendant le chargement
+                            className="w-full p-3 text-white rounded-lg hover:bg-[var(--primary-color)]/80 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                             style={{ backgroundColor: 'var(--primary-color)' }}
                         >
-                            Envoyer
+                            {isLoading ? 'Veuillez patienter...' : 'Envoyer'}
                         </button>
-                        {formStatus && (
+                        {formStatus && !isLoading && (
                             <p className={`mt-4 text-center ${formStatus.type === 'success' ? 'text-green-500' : 'text-[var(--primary-color)]'}`} style={{ color: formStatus.type === 'success' ? 'green' : 'var(--primary-color)' }}>
                                 {formStatus.message}
                             </p>
@@ -122,7 +134,7 @@ function Contact() {
                     <a href="https://github.com/Toutvendre" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>
                         <FaGithub className="text-2xl" />
                     </a>
-                    <a href="https://twitter.com/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>
+                    <a href="https://x.com/AlexisKI07" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>
                         <FaTwitter className="text-2xl" />
                     </a>
                     <a href="https://instagram.com/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>
