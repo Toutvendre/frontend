@@ -24,7 +24,7 @@ function Contact() {
         setIsLoading(true);
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}`, formData, {
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/contact`, formData, {
                 headers: { 'Content-Type': 'application/json' },
             });
             setFormStatus(response.data);
