@@ -88,7 +88,7 @@ function Home() {
                         Je suis <span style={{ color: 'var(--primary-color)' }}>Développeur</span>
                     </h2>
                     <p className="mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed" style={{ color: 'var(--gray-text)' }}>
-                        Web et Mobile passionné. Spécialisé en HTML, CSS, JavaScript, React et PHP, je conçois des sites performants et esthétiques, avec des interfaces intuitives. À jour sur les dernières technos, je livre des solutions modernes et de qualité.
+                        Développeur Web et Mobile passionné, je maîtrise HTML, CSS, JavaScript, React et PHP pour créer des sites performants et esthétiques, avec des interfaces intuitives, tout en restant à la pointe des dernières technologies pour offrir des solutions modernes et de haute qualité.
                     </p>
                     <div className="flex space-x-4 md:space-x-6 mb-6 md:mb-8">
                         <a href="https://www.linkedin.com/in/alexis-ki-099781358" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
