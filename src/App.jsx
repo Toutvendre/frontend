@@ -36,7 +36,7 @@ function ThemeControls() {
     { name: 'Turquoise', value: '#167D7F' },
     { name: 'Corail', value: '#FF6F61' },
     { name: 'Violet', value: '#6B5B95' },
-    { name: 'Vert', value: '#2ECC71' },
+    { name: 'bleu', value: '#0E86D4' },
   ];
 
   const toggleSettings = () => {
@@ -48,7 +48,7 @@ function ThemeControls() {
       {/* Bouton de réglages */}
       <button
         onClick={toggleSettings}
-        className="p-2 bg-[var(--primary-color)] text-white rounded-full hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center"
+        className="p-2 px-2 m-2 bg-[var(--primary-color)] text-white rounded-full hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center"
         title="Réglages"
       >
         <FaCog className="text-xl" />

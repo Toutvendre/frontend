@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaGithub, FaExternalLinkAlt, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { useState, useEffect, useMemo, useContext } from 'react';
 import { ThemeContext } from './ThemeContext.jsx';
@@ -88,18 +89,15 @@ function Projects() {
                 </button>
 
                 {/* Menu principal (grands écrans, inchangé) */}
-                <nav className="hidden md:flex space-x-8">
-                    {['/', '/about', '/projects', '/skills', '/services', '/contact'].map((path, index) => (
-                        <Link
-                            key={index}
-                            to={path}
-                            className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300 px-2"
-                            style={{ color: 'var(--gray-text)' }}
-                        >
-                            {['Accueil', 'A propos', 'Portfolio', 'Compétences', 'Services', 'Contact'][index]}
-                        </Link>
-                    ))}
+                <nav className="hidden md:flex space-x-8 justify-center select-none">
+                    <NavLink to="/" exact className={({ isActive }) => `font-medium transition-all duration-300 px-2 border-b-2 outline-none focus:outline-none ${isActive ? 'text-[var(--primary-color)] border-[var(--primary-color)]' : 'text-[var(--gray-text)] border-transparent hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]'}`}>Accueil</NavLink>
+                    <NavLink to="/about" className={({ isActive }) => `font-medium transition-all duration-300 px-2 border-b-2 outline-none focus:outline-none ${isActive ? 'text-[var(--primary-color)] border-[var(--primary-color)]' : 'text-[var(--gray-text)] border-transparent hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]'}`}>A propos</NavLink>
+                    <NavLink to="/projects" className={({ isActive }) => `font-medium transition-all duration-300 px-2 border-b-2 outline-none focus:outline-none ${isActive ? 'text-[var(--primary-color)] border-[var(--primary-color)]' : 'text-[var(--gray-text)] border-transparent hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]'}`}>Portfolio</NavLink>
+                    <NavLink to="/skills" className={({ isActive }) => `font-medium transition-all duration-300 px-2 border-b-2 outline-none focus:outline-none ${isActive ? 'text-[var(--primary-color)] border-[var(--primary-color)]' : 'text-[var(--gray-text)] border-transparent hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]'}`}>Compétences</NavLink>
+                    <NavLink to="/services" className={({ isActive }) => `font-medium transition-all duration-300 px-2 border-b-2 outline-none focus:outline-none ${isActive ? 'text-[var(--primary-color)] border-[var(--primary-color)]' : 'text-[var(--gray-text)] border-transparent hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]'}`}>Services</NavLink>
+                    <NavLink to="/contact" className={({ isActive }) => `font-medium transition-all duration-300 px-2 border-b-2 outline-none focus:outline-none ${isActive ? 'text-[var(--primary-color)] border-[var(--primary-color)]' : 'text-[var(--gray-text)] border-transparent hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]'}`}>Contact</NavLink>
                 </nav>
+
             </header>
 
             {/* Menu déroulant pour les petits écrans */}
