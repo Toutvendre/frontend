@@ -6,16 +6,12 @@ import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaCode, FaDatabase } from 're
 
 function Skills() {
     const [isVisible, setIsVisible] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // État pour le menu hamburger
 
     useEffect(() => {
         setIsVisible(true);
     }, []);
 
-    // Fonction pour basculer l'état du menu
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+
 
     const skills = [
         { name: 'HTML', icon: <FaHtml5 className="text-5xl text-[var(--primary-color)] drop-shadow-md" />, description: 'Maîtrise avancée de HTML5 pour structurer des pages web modernes.' },
@@ -33,15 +29,6 @@ function Skills() {
         <div className="w-full h-screen flex flex-col" style={{ backgroundColor: 'var(--background-color)', color: 'var(--text-color)' }}>
             {/* Header */}
             <header className="w-full py-6 px-4 flex justify-between items-center md:justify-center md:flex" style={{ background: 'linear-gradient(to bottom, rgba(var(--primary-color-rgb), 0.1), transparent)' }}>
-                {/* Bouton hamburger (petits écrans) */}
-                <button
-                    className="md:hidden text-[var(--gray-text)] hover:text-[var(--primary-color)] transition-colors duration-300"
-                    onClick={toggleMenu}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
 
                 {/* Menu principal (grands écrans, inchangé) */}
                 <nav className="hidden md:flex space-x-8 justify-center select-none">
@@ -54,20 +41,6 @@ function Skills() {
                 </nav>
 
             </header>
-
-            {/* Menu déroulant pour les petits écrans */}
-            {isMenuOpen && (
-                <div className="md:hidden absolute top-16 left-0 w-full bg-[var(--background-color)] shadow-lg z-50">
-                    <nav className="flex flex-col space-y-4 p-4">
-                        <Link to="/" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>Accueil</Link>
-                        <Link to="/about" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>A propos</Link>
-                        <Link to="/projects" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>Portfolio</Link>
-                        <Link to="/skills" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>Compétences</Link>
-                        <Link to="/services" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>Services</Link>
-                        <Link to="/contact" className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300" style={{ color: 'var(--gray-text)' }}>Contact</Link>
-                    </nav>
-                </div>
-            )}
 
             {/* Skills Section (inchangée pour grands écrans) */}
             <section className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8">

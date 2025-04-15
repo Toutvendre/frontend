@@ -20,7 +20,6 @@ function Projects() {
 
     const [currentImage, setCurrentImage] = useState(project3Images[0]);
     const [isVisible, setIsVisible] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // État pour le menu hamburger
 
     useEffect(() => {
         setIsVisible(true);
@@ -63,10 +62,7 @@ function Projects() {
         document.documentElement.style.setProperty('--primary-color', primaryColor);
     }, [primaryColor]);
 
-    // Fonction pour basculer l'état du menu
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+
 
     return (
         <div
@@ -78,15 +74,6 @@ function Projects() {
                 className="w-full py-6 px-4 flex justify-between items-center md:justify-center md:px-8"
                 style={{ background: 'transparent' }}
             >
-                {/* Bouton hamburger (petits écrans) */}
-                <button
-                    className="md:hidden text-[var(--gray-text)] hover:text-[var(--primary-color)] transition-colors duration-300"
-                    onClick={toggleMenu}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
 
                 {/* Menu principal (grands écrans, inchangé) */}
                 <nav className="hidden md:flex space-x-8 justify-center select-none">
@@ -99,24 +86,6 @@ function Projects() {
                 </nav>
 
             </header>
-
-            {/* Menu déroulant pour les petits écrans */}
-            {isMenuOpen && (
-                <div className="md:hidden absolute top-16 left-0 w-full bg-[var(--background-color)] shadow-lg z-50">
-                    <nav className="flex flex-col space-y-4 p-4">
-                        {['/', '/about', '/projects', '/skills', '/services', '/contact'].map((path, index) => (
-                            <Link
-                                key={index}
-                                to={path}
-                                className="hover:text-[var(--primary-color)] font-medium transition-colors duration-300"
-                                style={{ color: 'var(--gray-text)' }}
-                            >
-                                {['Accueil', 'A propos', 'Portfolio', 'Compétences', 'Services', 'Contact'][index]}
-                            </Link>
-                        ))}
-                    </nav>
-                </div>
-            )}
 
             {/* Section projets (inchangée pour grands écrans) */}
             <section className="flex-1 px-4 sm:px-6 md:px-8 py-16 flex flex-col items-center">

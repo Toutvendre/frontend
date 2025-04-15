@@ -2,6 +2,7 @@ import React, { useState } from 'react'; // Ajout de useState
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './ThemeProvider.jsx';
 import { ThemeContext } from './ThemeContext.jsx';
+import HamburgerMenu from './HamburgerMenu.jsx';
 import Services from './Services.jsx';
 import Home from './Home.jsx';
 import Skills from './Skills.jsx';
@@ -15,6 +16,7 @@ function App() {
     <ThemeProvider>
       <Router>
         <ThemeControls />
+        <HamburgerMenu />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
@@ -48,7 +50,7 @@ function ThemeControls() {
       {/* Bouton de réglages */}
       <button
         onClick={toggleSettings}
-        className="p-2 px-2 m-2 bg-[var(--primary-color)] text-white rounded-full hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center"
+        className="p-2 px-2 bg-[var(--primary-color)] text-white rounded-full hover:bg-opacity-80 transition-all duration-300 flex items-center justify-center"
         title="Réglages"
       >
         <FaCog className="text-xl" />
@@ -56,7 +58,7 @@ function ThemeControls() {
 
       {/* Menu déroulant */}
       <div
-        className={`absolute top-12 right-0 bg-[var(--background-color)] p-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${isSettingsOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+        className={`absolute top-12 right-0 bg-[var(--background-color)] p-2 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${isSettingsOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
           }`}
       >
         {/* Bouton pour changer le thème */}
