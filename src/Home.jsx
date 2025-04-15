@@ -60,15 +60,13 @@ function Home() {
             )}
 
             {/* Section principale */}
-            <section id="home" className="flex flex-col md:flex-row items-center justify-between px-6 py-10 md:px-6 flex-1">
-
+            <section id="home" className="flex flex-col sm:flex-row items-center justify-between px-6 py-9 sm:px-6 flex-1 gap-6">
                 {/* Image avec cadre */}
-                <div className="w-full md:w-1/2 flex justify-center mt-4 md:mt-2 relative ms-5">
-                    <div className="relative w-64 h-72 sm:w-90 sm:h-50 md:w-96 md:h-96">
+                <div className="w-full sm:w-2/3 flex justify-center mt-4 sm:mt-0 relative">
+                    <div className="relative w-48 h-56 sm:w-64 sm:h-72 md:w-72 md:h-96 lg:w-96 lg:h-112">
                         <div className="relative w-full h-[125%] ms-auto">
                             <div
-                                className={` select-none absolute w-full h-full bg-cover bg-center z-20 transition-all duration-700 ease-out transform hover:scale-105 hover:shadow-xl ${isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-80 translate-y-10'}`}
-
+                                className={`select-none absolute w-full h-full bg-cover bg-center z-20 transition-all duration-700 ease-out transform hover:scale-105 hover:shadow-xl ${isVisible ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-80 translate-y-10'}`}
                                 style={{
                                     top: '-15%',
                                     backgroundImage: 'url("/images/duc.png")',
@@ -78,42 +76,54 @@ function Home() {
                                 }}
                             ></div>
                             <div className="absolute inset-0 z-30 pointer-events-none select-none">
-                                <div className="absolute top-[-15%] left-[-10%] w-[15%] h-[10%] border-t-4 border-l-4 sm:w-[13%] sm:h-[8%]" style={{ borderColor: 'var(--primary-color)' }}></div>
-                                <div className="absolute bottom-[5%] right-[-15%] w-[15%] h-[10%] border-b-4 border-r-4 sm:w-[12%] sm:h-[8%]" style={{ borderColor: 'var(--primary-color)' }}></div>
+                                {/* Bordure du haut visible sur tous les écrans */}
+                                <div
+                                    className="absolute top-[-15%] left-[-10%] w-[15%] h-[10%] border-t-4 border-l-4 sm:w-[13%] sm:h-[8%]"
+                                    style={{ borderColor: 'var(--primary-color)' }}
+                                ></div>
+
+                                {/* Bordure du bas : cachée sur les petits écrans (xs, sm), visible sur les grands écrans */}
+                                <div
+                                    className="absolute bottom-[5%] right-[-15%] w-[15%] h-[10%] border-b-4 border-r-4 sm:w-[8%] sm:h-[10%] sm:hidden md:block"
+                                    style={{ borderColor: 'var(--primary-color)' }}
+                                ></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 {/* Texte et boutons */}
-                <div className="w-full md:w-1/2 px-4 select-none">
-                    <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className="w-full sm:w-1/2 px-4 sm:px-8 flex flex-col justify-center text-center sm:text-left">
+                    <h1 className={`text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         Salut, je suis <span style={{ color: 'var(--primary-color)' }}>Alexis</span>
                     </h1>
-                    <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 md:mb-6 transition-all duration-1000 delay-200 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ color: 'var(--gray-text)' }}>
+
+                    <h2 className={`text-lg sm:text-xl md:text-3xl lg:text-4xl font-semibold mb-4 md:mb-6 transition-all duration-1000 delay-200 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ color: 'var(--gray-text)' }}>
                         Je suis <span style={{ color: 'var(--primary-color)' }}>Développeur</span>
                     </h2>
-                    <p className="mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed" style={{ color: 'var(--gray-text)' }}>
+
+                    <p className="mb-6 md:mb-8 text-sm sm:text-base md:text-lg leading-relaxed text-center sm:text-left" style={{ color: 'var(--gray-text)' }}>
                         Développeur Web et Mobile passionné, je maîtrise HTML, CSS, JavaScript, React et PHP pour créer des sites performants et esthétiques, avec des interfaces intuitives, tout en restant à la pointe des dernières technologies pour offrir des solutions modernes et de haute qualité.
                     </p>
-                    <div className="flex space-x-4 md:space-x-6 mb-6 md:mb-8">
+
+                    <div className="flex justify-center sm:justify-center md:justify-start space-x-4 md:space-x-6 mb-6 md:mb-8">
                         <a href="https://www.linkedin.com/in/alexis-ki-099781358" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
-                            <FaLinkedin className="text-xl md:text-2xl" />
+                            <FaLinkedin className="text-base sm:text-lg md:text-2xl" />
                         </a>
                         <a href="https://github.com/Toutvendre" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
-                            <FaGithub className="text-xl md:text-2xl" />
+                            <FaGithub className="text-base sm:text-lg md:text-2xl" />
                         </a>
                         <a href="https://x.com/AlexisKI07" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
-                            <FaTwitter className="text-xl md:text-2xl" />
+                            <FaTwitter className="text-base sm:text-lg md:text-2xl" />
                         </a>
                         <a href="https://instagram.com/ton-profil" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--primary-color)] transition-colors duration-300 transform hover:scale-110" style={{ color: 'var(--gray-text)' }}>
-                            <FaInstagram className="text-xl md:text-2xl" />
+                            <FaInstagram className="text-base sm:text-lg md:text-2xl" />
                         </a>
                     </div>
-                    <div className="flex flex-row flex-wrap items-center justify-start gap-4 mt-6">
+
+                    <div className="flex flex-row flex-wrap items-center justify-start gap-5 mt-6">
                         <Link
                             to="/contact"
-                            className="inline-block px-4 py-2 md:px-6 md:py-3 text-white rounded-full hover:bg-[var(--secondary-color)] transition-all duration-300 transform hover:scale-105 shadow-md"
+                            className="inline-block px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-3 text-sm sm:text-base md:text-lg text-white rounded-full hover:bg-[var(--secondary-color)] transition-all duration-300 transform hover:scale-105 shadow-md text-center"
                             style={{ backgroundColor: 'var(--primary-color)' }}
                         >
                             Engagez-moi
@@ -122,15 +132,16 @@ function Home() {
                         <a
                             href="/pdf/cv.pdf"
                             download
-                            className="inline-block px-4 py-2 md:px-6 md:py-3 text-white rounded-full hover:bg-[var(--secondary-color)] transition-all duration-300 transform hover:scale-105 shadow-md"
+                            className="inline-block px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-3 text-sm sm:text-base md:text-lg text-white rounded-full hover:bg-[var(--secondary-color)] transition-all duration-300 transform hover:scale-105 shadow-md text-center"
                             style={{ backgroundColor: 'var(--primary-color)' }}
                         >
                             Télécharger CV
                         </a>
                     </div>
-
                 </div>
             </section>
+
+
         </div>
     );
 }
