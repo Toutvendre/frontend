@@ -75,16 +75,15 @@ function Home() {
                                     boxShadow: '0 0 30px rgba(0, 0, 0, 0)',
                                 }}
                             ></div>
-                            <div className="absolute inset-0 z-30 pointer-events-none select-none">
-                                {/* Bordure du haut visible sur tous les écrans */}
+                            <div className="tw-absolute tw-inset-0 tw-z-30 tw-pointer-events-none tw-select-none">
+                                {/* Bordure du haut : visible uniquement sur écrans larges (md et plus) */}
                                 <div
-                                    className="absolute top-[-15%] left-[-10%] w-[15%] h-[10%] border-t-4 border-l-4 sm:w-[13%] sm:h-[8%]"
+                                    className="tw-absolute tw-top-[-10%] tw-left-[-8%] tw-w-[12%] tw-h-[8%] tw-border-t-4 tw-border-l-4 tw-hidden md:tw-block sm:tw-w-[10%] sm:tw-h-[6%]"
                                     style={{ borderColor: 'var(--primary-color)' }}
                                 ></div>
-
-                                {/* Bordure du bas : cachée sur les petits écrans (xs, sm), visible sur les grands écrans */}
+                                {/* Bordure du bas : cachée sur petits écrans, visible sur grands écrans (md et plus) */}
                                 <div
-                                    className="absolute bottom-[5%] right-[-15%] w-[15%] h-[10%] border-b-4 border-r-4 sm:w-[8%] sm:h-[10%] sm:hidden md:block"
+                                    className="tw-absolute tw-bottom-[2%] tw-right-[-8%] tw-w-[12%] tw-h-[8%] tw-border-b-4 tw-border-r-4 tw-hidden md:tw-block sm:tw-w-[10%] sm:tw-h-[6%]"
                                     style={{ borderColor: 'var(--primary-color)' }}
                                 ></div>
                             </div>
